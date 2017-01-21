@@ -1,6 +1,4 @@
-delimiter $$
 
-CREATE DATABASE `wingman_db` /*!40100 DEFAULT CHARACTER SET latin1 */$$
 
 delimiter $$
 

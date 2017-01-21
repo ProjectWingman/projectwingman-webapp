@@ -15,7 +15,11 @@ import java.sql.*;
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	String URL;
+    String JDBC_DRIVER;
+    String USER;
+    String PASS;
+	Connection conn;
     /**
      * @throws ClassNotFoundException 
      * @see HttpServlet#HttpServlet()
@@ -23,23 +27,22 @@ public class Register extends HttpServlet {
     public Register() {
         super();
         // TODO Auto-generated constructor stub
+        URL = "jdbc:mysql://localhost:3306/wingman_db";
+        JDBC_DRIVER = "com.mysql.jdbc.Driver";
+        USER = "root";
+        PASS = "3070";
+    	conn = null;
+    	try {
+        	Class.forName(JDBC_DRIVER);
+    		conn = DriverManager.getConnection(URL,USER,PASS);
+    	} catch (SQLException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
     }
-
-	/**
-	 * @see Servlet#getServletConfig()
-	 */
-	public ServletConfig getServletConfig() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @see Servlet#getServletInfo()
-	 */
-	public String getServletInfo() {
-		// TODO Auto-generated method stub
-		return null; 
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,66 +58,52 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String URL = "jdbc:mysql://localhost:3306/wingman_db";
-        String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        String USER = "root";
-        String PASS = "";
-		Connection conn=null;
-        try {
-        	Class.forName(JDBC_DRIVER);
-    		conn = DriverManager.getConnection(URL,USER,PASS);
-    	} catch (SQLException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-        
-		String fname=request.getParameter("firstname");
-		String lname=request.getParameter("lastname");
-		String email=request.getParameter("email");
-		int age=Integer.parseInt(request.getParameter("age"));
-		String phone=request.getParameter("phone");
-		String dob=request.getParameter("dob");
-		String address=request.getParameter("add");
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		boolean flag = false;
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
+		String email = request.getParameter("email");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String phone = request.getParameter("phone");
+		String dob = request.getParameter("dob");
+		String address = request.getParameter("add");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		boolean flag = true;
 		try{
-    	Statement s = conn.createStatement();
-    	String sql = "select username from Customer_Details";
-    	ResultSet rs = s.executeQuery(sql);
-    	while(rs.next()){
-    		if(rs.getString("username") == username)
-    			flag = false;}
-		}
-		catch(Exception e)
-		{
+	    	Statement s = conn.createStatement();
+	    	String sql = "select username from Customer_Details";
+	    	ResultSet rs = s.executeQuery(sql);
+	    	while(rs.next()){
+	    		if(rs.getString("username") == username)
+	    			flag = false;
+	    	}
+		}catch(Exception e){
 			e.printStackTrace();
 		}
-		if(!flag)	{
+		if(flag)	{
     		String sql1 = "INSERT INTO  `wingman_db`.`Customer_Details` (`FirstName`,`LastName`,`Age`,`Email`,`Phone`,`DOB`,`Address`,`Username`,`Password`)VALUES (?,?,?,?,?,?,?,?,?)";
     		PreparedStatement p;
 			try {
 				p = conn.prepareStatement(sql1);
-    		p.setString(1, fname);
-    		p.setString(2, lname);
-    		p.setInt(3, age);
-    		p.setString(4, email);
-    		p.setString(5, phone);
-    		p.setString(6, dob);
-    		p.setString(7, address);
-    		p.setString(8, username);
-    		p.setString(9, password);
-    		p.executeUpdate();}
-			catch(Exception e)
-			{
+	    		p.setString(1, fname);
+	    		p.setString(2, lname);
+	    		p.setInt(3, age);
+	    		p.setString(4, email);
+	    		p.setString(5, phone);
+	    		p.setString(6, dob);
+	    		p.setString(7, address);
+	    		p.setString(8, username);
+	    		p.setString(9, password);
+	    		p.executeUpdate();
+	    	}catch(Exception e){
 				e.printStackTrace();
 			}
+			response.sendRedirect("index.jsp");
     	}
-		response.sendRedirect("homepage.jsp");
-
-			}
+		else{
+			//check status in signup and give error if username exists
+			response.sendRedirect("signup.jsp?status=1");
+		}
+		
+	}
 
 }

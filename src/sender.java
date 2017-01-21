@@ -45,7 +45,7 @@ public class sender extends HttpServlet {
 		String URL = "jdbc:mysql://localhost:3306/wingman_db";
         String JDBC_DRIVER = "com.mysql.jdbc.Driver";
         String USER = "root";
-        String PASS = "";
+        String PASS = "3070";
 		Connection conn=null;
         try {
         	Class.forName(JDBC_DRIVER);
