@@ -55,6 +55,7 @@
 			<label>Username:</label><input type="text" name="username" id="un"/><br>
 			<label>Password</label><input type="password" name="password" id="pass"/><br>
 			<input type="submit" value="Login"/>
+			<a href="homepage.jsp">Homepage</a>
 		</form>
 	</body>
 </html>
