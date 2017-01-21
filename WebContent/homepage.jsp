@@ -33,6 +33,7 @@
 	        while(rs.next()){
 	        	if(rs.getString("Sessionid").equals(ss))	{
 	        		username = rs.getString("username");
+	        		System.out.println(username);
 	        		flag = true;
 	        	}
 	        }

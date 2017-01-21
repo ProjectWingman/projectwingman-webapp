@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,6 +57,27 @@ public class receiver extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+        String username=request.getParameter("username");
+		//String password=request.getParameter("password");
+		try{
+	    	Statement s = conn.createStatement();
+	    	String sql = "select username from Customer_Details";
+	    	ResultSet rs = s.executeQuery(sql);
+	    	while(rs.next()){
+	    		if(rs.getString("Username").equals(username)){
+	    			//if(rs.getString("Password").equals(password))
+	    				String id=(String) request.getSession().getAttribute(request.getSession().getId());
+	    				String sql2 = "SELECT sessionid from `login_session` WHERE username='"+username+"'";
+	    		    	ResultSet r = s.executeQuery(sql2);
+if(rs.getString("sessionid")==id)
+{
+	    				response.sendRedirect("homepage.jsp");}
+	    				return;
+	    		}
+	    	}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
         
 		String name=request.getParameter("name");
 		String date=request.getParameter("ddate");
@@ -67,12 +90,12 @@ public class receiver extends HttpServlet {
     		PreparedStatement p;
 			try {
 				p = conn.prepareStatement(sql1);
-    		p.setString(1, name);
-    		p.setString(2, date);
-    		p.setString(3, email);
-    		p.setString(4, phone);
-    		p.setString(5, fno);
-    		p.setInt(6, weight);
+    		p.setString(1,name);
+    		p.setString(2,date);
+    		p.setString(3,email);
+    		p.setString(4,phone);
+    		p.setString(5,fno);
+    		p.setInt(6,weight);
     		p.executeUpdate();}
 			catch(Exception e)
 			{
