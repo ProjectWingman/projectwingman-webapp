@@ -63,7 +63,7 @@ public class receiver extends HttpServlet {
 		String fno=request.getParameter("fno");
 		int weight=Integer.parseInt(request.getParameter("weight"));
 		
-    		String sql1 = "INSERT INTO  `wingman_db`.`sender_details` (`Name`,`Ddate`,`Email`,`Phone`,`Flightno`,`Weight`)VALUES (?,?,?,?,?,?)";
+    		String sql1 = "INSERT INTO  `wingman_db`.`receiver_details` (`Name`,`Ddate`,`Email`,`Phone`,`Flightno`,`Weight`)VALUES (?,?,?,?,?,?)";
     		PreparedStatement p;
 			try {
 				p = conn.prepareStatement(sql1);
@@ -78,6 +78,7 @@ public class receiver extends HttpServlet {
 			{
 				e.printStackTrace();
 			}
+			response.sendRedirect("homepage.jsp");
     	}
 	}
 

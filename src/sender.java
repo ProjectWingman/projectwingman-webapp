@@ -78,6 +78,8 @@ public class sender extends HttpServlet {
 			{
 				e.printStackTrace();
 			}
+			response.sendRedirect("homepage.jsp");
+
     	}
-	//response.sendRedirect("homepage.jsp");
+
 }
