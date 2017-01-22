@@ -51,10 +51,10 @@
 <label>Email:</label><input type="email" name="email" id="em"/><br>
 <label>Phone:</label><input type="tel" name="phone" id="ph"/><br>
 <label>Weight of Package:</label><input type="number" name="weight" id="w"/><br>
-</form>
 <input type="submit" value="Submit" id="sub"/>
 <input type="reset" value="Reset"/><br>
-			<a href="homepage.jsp">Homepage</a>
+</form>
+<a href="homepage.jsp">Homepage</a>
 
 </body>
 </html>

@@ -64,22 +64,23 @@ public class sender extends HttpServlet {
 		String phone=request.getParameter("phone");
 		int weight=Integer.parseInt(request.getParameter("weight"));
 		
-    		String sql1 = "INSERT INTO  `wingman_db`.`sender_details` (`Name`,`Ddate`,`Email`,`Phone`,`Weight`)VALUES (?,?,?,?,?)";
-    		PreparedStatement p;
-			try {
-				p = conn.prepareStatement(sql1);
+		String sql1 = "INSERT INTO  `wingman_db`.`sender_details` (`Name`,`Ddate`,`Email`,`Phone`,`Weight`)VALUES (?,?,?,?,?)";
+		PreparedStatement p;
+		try {
+			p = conn.prepareStatement(sql1);
     		p.setString(1, name);
     		p.setString(2, date);
     		p.setString(3, email);
     		p.setString(4, phone);
     		p.setInt(5, weight);
-    		p.executeUpdate();}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			response.sendRedirect("homepage.jsp");
-
+    		p.executeUpdate();
     	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		response.sendRedirect("homepage.jsp");
+
+    }
 
 }

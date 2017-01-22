@@ -46,7 +46,7 @@
 </head>
 <body>
 <form action="receiver" method="post">
-<input type="hidden" name="name" value=<%=username%>/><br>
+<input type="hidden" name="name" value="<%=username%>"/><br>
 <label>Date of Travel:</label><input type="date" name="ddate" id="dd"/><br>
 <label>Email:</label><input type="email" name="email" id="em"/><br>
 <label>Phone:</label><input type="tel" name="phone" id="ph"/><br>

@@ -69,23 +69,24 @@ public class receiver extends HttpServlet {
 	    				String id=(String) request.getSession().getAttribute(request.getSession().getId());
 	    				String sql2 = "SELECT sessionid from `login_session` WHERE username='"+username+"'";
 	    		    	ResultSet r = s.executeQuery(sql2);
-if(rs.getString("sessionid")==id)
-{
-	    				response.sendRedirect("homepage.jsp");}
+	    		    	if(rs.getString("sessionid")==id)
+	    		    	{
+	    		    		response.sendRedirect("homepage.jsp");
+	    		    		}
 	    				return;
-	    		}
+	    			}	
 	    	}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-        
 		String name=request.getParameter("name");
 		String date=request.getParameter("ddate");
 		String email=request.getParameter("email");
 		String phone=request.getParameter("phone");
 		String fno=request.getParameter("fno");
-		int weight=Integer.parseInt(request.getParameter("weight"));
-		
+		System.out.println("Name: " + name);
+		//int weight=Integer.parseInt(request.getParameter("weight"));
+		String weight = request.getParameter("weight");
     		String sql1 = "INSERT INTO  `wingman_db`.`receiver_details` (`Name`,`Ddate`,`Email`,`Phone`,`Flightno`,`Weight`)VALUES (?,?,?,?,?,?)";
     		PreparedStatement p;
 			try {
@@ -95,7 +96,7 @@ if(rs.getString("sessionid")==id)
     		p.setString(3,email);
     		p.setString(4,phone);
     		p.setString(5,fno);
-    		p.setInt(6,weight);
+    		p.setString(6,weight);
     		p.executeUpdate();}
 			catch(Exception e)
 			{
