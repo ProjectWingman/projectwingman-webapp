@@ -66,8 +66,15 @@ public class sender extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		int weight = Integer.parseInt(request.getParameter("weight"));
-
-		String sql1 = "INSERT INTO  `wingman_db`.`sender_details` (`Name`,`Ddate`,`Email`,`Phone`,`Weight`)VALUES (?,?,?,?,?)";
+		String source=request.getParameter("source");
+		String dest=request.getParameter("dest");
+		if(email.isEmpty()){
+			email=null;
+		}
+		if(phone.isEmpty()){
+			phone=null;
+		}
+		String sql1 = "INSERT INTO  `wingman_db`.`sender_details` (`Name`,`Ddate`,`Email`,`Phone`,`Weight`,`Source`,`Destination`)VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement p;
 		try {
 			p = conn.prepareStatement(sql1);

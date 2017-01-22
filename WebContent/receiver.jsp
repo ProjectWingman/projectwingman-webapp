@@ -51,10 +51,12 @@
 			of Travel:</label><input type="date" name="ddate" id="dd" /> <br> <label>Email:</label><input
 			type="email" name="email" id="em" /> <br> <label>Phone:</label><input
 			type="tel" name="phone" id="ph" /> <br> <label>Flight
-			Number:</label><input type="text" name="fno" /> <br> <label>Weight
-			allowed:</label><input type="number" name="weight" id="w" /> <br> <input
-			type="submit" value="Submit" id="sub" /> <input type="reset"
-			value="Reset" /> <br> <a href="homepage.jsp">Homepage</a>
+			Number:</label><input type="text" name="fno" /> <br> <label>Source:</label><input
+			type="text" name="source" /><br> <label>Destination:</label><input
+			type="text" name="dest" /><label>Weight allowed:</label><input
+			type="number" name="weight" id="w" /> <br> <input type="submit"
+			value="Submit" id="sub" /> <input type="reset" value="Reset" /> <br>
+		<a href="homepage.jsp">Homepage</a>
 
 	</form>
 </body>

@@ -50,10 +50,11 @@
 		<input type="hidden" name="name" value="<%=username%>" /> <br> <label>Date
 			of Delivery:</label><input type="date" name="ddate" id="dd" /> <br> <label>Email:</label><input
 			type="email" name="email" id="em" /> <br> <label>Phone:</label><input
-			type="tel" name="phone" id="ph" /> <br> <label>Weight of
-			Package:</label><input type="number" name="weight" id="w" /> <br> <input
-			type="submit" value="Submit" id="sub" /> <input type="reset"
-			value="Reset" /> <br>
+			type="tel" name="phone" id="ph" /> <br> <label>Source:</label><input
+			type="text" name="source" /><br> <label>Destination:</label><input
+			type="text" name="dest" /><label>Weight of Package:</label><input
+			type="number" name="weight" id="w" /> <br> <input type="submit"
+			value="Submit" id="sub" /> <input type="reset" value="Reset" /> <br>
 	</form>
 	<a href="homepage.jsp">Homepage</a>
 

@@ -86,10 +86,18 @@ public class receiver extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String fno = request.getParameter("fno");
-		System.out.println("Name: " + name);
-		// int weight=Integer.parseInt(request.getParameter("weight"));
-		String weight = request.getParameter("weight");
-		String sql1 = "INSERT INTO  `wingman_db`.`receiver_details` (`Name`,`Ddate`,`Email`,`Phone`,`Flightno`,`Weight`)VALUES (?,?,?,?,?,?)";
+		String source=request.getParameter("source");
+		String dest=request.getParameter("dest");
+		//System.out.println("Name: " + name);
+		int weight=Integer.parseInt(request.getParameter("weight"));
+		//String weight = request.getParameter("weight");
+		if(email.isEmpty()){
+			email=null;
+		}
+		if(phone.isEmpty()){
+			phone=null;
+		}
+		String sql1 = "INSERT INTO  `wingman_db`.`traveller_details` (`Name`,`Ddate`,`Email`,`Phone`,`Flightno`,`Weight`,`Source`,`Destination`)VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement p;
 		try {
 			p = conn.prepareStatement(sql1);
@@ -98,7 +106,9 @@ public class receiver extends HttpServlet {
 			p.setString(3, email);
 			p.setString(4, phone);
 			p.setString(5, fno);
-			p.setString(6, weight);
+			p.setInt(6, weight);
+			p.setString(7, source);
+			p.setString(8, dest);
 			p.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
