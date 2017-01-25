@@ -3,7 +3,7 @@
     <%@page import="java.sql.*" %>
     <%@page import="java.util.*" %>
     <%
-    String URL = "jdbc:mysql://localhost:3306/airline_db";
+    String URL = "jdbc:mysql://localhost:3306/wingman_db";
     String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     String USER = "root";
     String PASS = "3070";
