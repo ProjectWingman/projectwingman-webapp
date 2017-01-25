@@ -28,10 +28,10 @@
 <title>All Customers </title>
 </head>
 <body>
+<h1>Travels</h1>
 <%
 while(rs.next()){
 %>
-<h1>Customers</h1>
 <table>
 	   <tr><td><%out.println(rs.getString("Name")); %></td></tr>
        <tr><td><%out.println(rs.getString("Ddate")); %></td></tr>
